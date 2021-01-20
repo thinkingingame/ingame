@@ -21,7 +21,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ]]
-
 -- Cocos2d-Lua core functions
 cc.loaded_packages = {}
 local loaded_packages = cc.loaded_packages
@@ -36,16 +35,14 @@ function cc.load(...)
 
     local packages = {}
     for _, name in ipairs(names) do
-        assert(type(name) == "string", string.format("cc.load() - invalid package name \"%s\"", tostring(name)))
+        assert(type(name) == "string", string.format('cc.load() - invalid package name "%s"', tostring(name)))
         if not loaded_packages[name] then
             local packageName = string.format("packages.%s.init", name)
             local cls = require(packageName)
-            assert(cls, string.format("cc.load() - package class \"%s\" load failed", packageName))
+            assert(cls, string.format('cc.load() - package class "%s" load failed', packageName))
             loaded_packages[name] = cls
 
-            if DEBUG > 1 then
-                printInfo("cc.load() - load module \"packages.%s.init\"", name)
-            end
+            LOG_INFO('cc.load() - load module "packages.%s.init"', name)
         end
         packages[#packages + 1] = loaded_packages[name]
     end
@@ -61,9 +58,11 @@ bind_ = function(target, ...)
     assert(#names > 0, "cc.bind() - package names expected")
 
     load_(...)
-    if not target.components_ then target.components_ = {} end
+    if not target.components_ then
+        target.components_ = {}
+    end
     for _, name in ipairs(names) do
-        assert(type(name) == "string" and name ~= "", string.format("cc.bind() - invalid package name \"%s\"", name))
+        assert(type(name) == "string" and name ~= "", string.format('cc.bind() - invalid package name "%s"', name))
         if not target.components_[name] then
             local cls = loaded_packages[name]
             for __, depend in ipairs(cls.depends or {}) do
@@ -82,15 +81,17 @@ end
 cc.bind = bind_
 
 function cc.unbind(target, ...)
-    if not target.components_ then return end
+    if not target.components_ then
+        return
+    end
 
     local names = {...}
     assert(#names > 0, "cc.unbind() - invalid package names")
 
     for _, name in ipairs(names) do
-        assert(type(name) == "string" and name ~= "", string.format("cc.unbind() - invalid package name \"%s\"", name))
+        assert(type(name) == "string" and name ~= "", string.format('cc.unbind() - invalid package name "%s"', name))
         local component = target.components_[name]
-        assert(component, string.format("cc.unbind() - component \"%s\" not found", tostring(name)))
+        assert(component, string.format('cc.unbind() - component "%s" not found', tostring(name)))
         component:unbind(target)
         target.components_[name] = nil
     end
