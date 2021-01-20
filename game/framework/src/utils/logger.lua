@@ -9,8 +9,14 @@ LOG_DEBUG = 1
 LOG_WARNING = 2
 LOG_ERROR = 3
 
+-- 所有的日志都要使用log方法，禁止print
+_print = print
+print = nil
+_release_print = release_print
+release_print = nil
+
 local function log(tag, fmt, ...)
-    print(tag .. string.format(tostring(fmt), ...))
+    _print(tag .. string.format(tostring(fmt), ...))
 end
 
 --[[
@@ -208,7 +214,3 @@ function DumpE(...)
     end
     dump(...)
 end
-
--- 所有的日志都要使用log方法，禁止print
-print = nil
-release_print = nil

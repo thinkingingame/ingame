@@ -1,13 +1,13 @@
 {
-    "init_cfg":{
-       "isLandscape": true,
-       "isWindowTop": false,
-       "name": "ingame",
-       "width": 960,
-       "height": 640,
-       "entry": "src/main.lua",
-       "consolePort": 6050,
-       "uploadPort": 6060
+    "init_cfg": {
+        "isLandscape": true,
+        "isWindowTop": false,
+        "name": "ingame",
+        "width": 960,
+        "height": 640,
+        "entry": "game/framework/src/main.lua",
+        "consolePort": 6050,
+        "uploadPort": 6060
     },
     "simulator_screen_size": [
         {

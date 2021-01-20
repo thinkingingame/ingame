@@ -22,11 +22,10 @@ THE SOFTWARE.
 
 ]]
 -- load framework
-printInfo("")
+LOGD("")
 
 device = require("cocos.framework.device")
 display = require("cocos.framework.display")
-audio = require("cocos.framework.audio")
 transition = require("cocos.framework.transition")
 
 require("cocos.framework.extends.NodeEx")
@@ -46,9 +45,6 @@ if ccui then
 end
 
 require("cocos.framework.package_support")
-
--- register the build-in packages
-cc.register("event", require("cocos.framework.components.event"))
 
 -- export global variable
 local __g = _G

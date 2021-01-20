@@ -42,7 +42,7 @@ function cc.load(...)
             assert(cls, string.format('cc.load() - package class "%s" load failed', packageName))
             loaded_packages[name] = cls
 
-            LOG_INFO('cc.load() - load module "packages.%s.init"', name)
+            LOGI('cc.load() - load module "packages.%s.init"', name)
         end
         packages[#packages + 1] = loaded_packages[name]
     end

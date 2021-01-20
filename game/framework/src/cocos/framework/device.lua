@@ -21,11 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ]]
-
 local device = {}
 
-device.platform    = "unknown"
-device.model       = "unknown"
+device.platform = "unknown"
+device.model = "unknown"
 
 local app = cc.Application:getInstance()
 local target = app:getTargetPlatform()
@@ -96,12 +95,12 @@ if device.platform == "windows" then
     device.pathSeparator = ";"
 end
 
-printInfo("# device.platform              = " .. device.platform)
-printInfo("# device.model                 = " .. device.model)
-printInfo("# device.language              = " .. device.language)
-printInfo("# device.writablePath          = " .. device.writablePath)
-printInfo("# device.directorySeparator    = " .. device.directorySeparator)
-printInfo("# device.pathSeparator         = " .. device.pathSeparator)
-printInfo("#")
+LOGD("# device.platform              = " .. device.platform)
+LOGD("# device.model                 = " .. device.model)
+LOGD("# device.language              = " .. device.language)
+LOGD("# device.writablePath          = " .. device.writablePath)
+LOGD("# device.directorySeparator    = " .. device.directorySeparator)
+LOGD("# device.pathSeparator         = " .. device.pathSeparator)
+LOGD("#")
 
 return device

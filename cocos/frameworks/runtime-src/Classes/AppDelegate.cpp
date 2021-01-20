@@ -100,17 +100,16 @@ bool AppDelegate::applicationDidFinishLaunching()
     //register custom function
     //LuaStack* stack = engine->getLuaStack();
     //register_custom_function(stack->getLuaState());
-    
-#if CC_64BITS
-    FileUtils::getInstance()->addSearchPath("src/64bit");
-#endif
-    FileUtils::getInstance()->addSearchPath("src");
-    FileUtils::getInstance()->addSearchPath("res");
+
+	auto paths = FileUtils::getInstance()->getSearchPaths();
+	for (auto i = 0; i < paths.size(); i++) {
+		CCLOG(paths[i].c_str());
+	}
+	FileUtils::getInstance()->addSearchPath("game/framework/src");
     if (engine->executeScriptFile("main.lua"))
     {
         return false;
     }
-
     return true;
 }
 

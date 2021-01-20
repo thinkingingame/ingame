@@ -33,3 +33,7 @@
 
 .*
 .*/
+Debug.win32/
+cocos/simulator/
+LuaDebug.lua
+*.log

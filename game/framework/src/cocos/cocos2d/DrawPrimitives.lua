@@ -21,7 +21,7 @@ local function lazy_init()
     end
 
     if nil == dp_shader then
-        LOG_ERROR("Error:dp_shader is nil!")
+        LOGE("Error:dp_shader is nil!")
         return false
     end
 
